@@ -1,12 +1,17 @@
 name: Generate Terraform Documentation
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [main]
-    paths: ['**.tf']
+    paths:
+      - '**/*.tf'
   pull_request:
     branches: [main]
-    paths: ['**.tf']
+    paths:
+      - '**/*.tf'
 
 jobs:
   docs:
@@ -15,11 +20,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Render terraform docs
-        uses: terraform-docs/gh-actions@main
+        uses: terraform-docs/gh-actions@v0.17.0
         with:
           working-dir: .
           output-file: README.md
