@@ -2,16 +2,19 @@ name: Generate Terraform Documentation
 
 permissions:
   contents: write
+  pull-requests: write
 
 on:
   push:
     branches: [master]
     paths:
       - '**/*.tf'
+      - '**/*.tfvars'
   pull_request:
     branches: [master]
     paths:
       - '**/*.tf'
+      - '**/*.tfvars'
 
 jobs:
   docs:
@@ -20,12 +23,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Render terraform docs
-        uses: Terraform-docs/gh-actions@v0.17.0
+        uses: terraform-docs/gh-actions@main
         with:
           working-dir: .
           output-file: README.md
           output-method: inject
           git-push: "true"
+          git-commit-message: "docs: update terraform documentation"
