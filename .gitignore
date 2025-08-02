@@ -34,3 +34,5 @@ terraform.rc
 *~
 .DS_Store
 Thumbs.db
+# ignore local terraform-docs binary folder
+terraform-docs-bin/
