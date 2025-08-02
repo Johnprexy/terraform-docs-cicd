@@ -1,0 +1,27 @@
+name: Generate Terraform Documentation
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.tf']
+  pull_request:
+    branches: [main]
+    paths: ['**.tf']
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Render terraform docs
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: "true"

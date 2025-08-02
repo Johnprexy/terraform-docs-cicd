@@ -1,0 +1,36 @@
+# Terraform local state
+*.tfstate
+*.tfstate.backup
+
+# Crash log
+crash.log
+
+# Generated .terraform directory (providers, modules)
+.terraform/
+
+# Sensitive override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# CLI configuration (if any stored locally)
+.terraformrc
+terraform.rc
+
+# Terraform plan output (if you output to file)
+*.tfplan
+
+# Ignore .tfvars if they contain secrets
+*.tfvars
+!example.tfvars      # allow example/template versions
+
+# Lock file: commit this for consistent module/provider versions
+# (leave uncommented if you want it tracked)
+# .terraform.lock.hcl
+
+# Editor / OS metadata
+*.swp
+*~
+.DS_Store
+Thumbs.db
