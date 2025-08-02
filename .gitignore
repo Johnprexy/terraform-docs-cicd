@@ -36,3 +36,4 @@ terraform.rc
 Thumbs.db
 # ignore local terraform-docs binary folder
 terraform-docs-bin/
+terraform-docs.zip
