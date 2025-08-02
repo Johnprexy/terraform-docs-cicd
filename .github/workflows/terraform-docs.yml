@@ -5,11 +5,11 @@ permissions:
 
 on:
   push:
-    branches: [main]
+    branches: [master]
     paths:
       - '**/*.tf'
   pull_request:
-    branches: [main]
+    branches: [master]
     paths:
       - '**/*.tf'
 
@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Render terraform docs
-        uses: terraform-docs/gh-actions@v0.17.0
+        uses: Terraform-docs/gh-actions@v0.17.0
         with:
           working-dir: .
           output-file: README.md
